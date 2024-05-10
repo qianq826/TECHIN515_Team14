@@ -1,7 +1,7 @@
 # TECHIN515_Team14
 
 
-### Crcadian Floor lamp
+### Circadian Floor lamp
 Group 14:
 Sebastian Qian | Yulin Li | Chaney He |
 
