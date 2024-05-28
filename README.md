@@ -1,10 +1,11 @@
 # TECHIN515_Team14
-
-<img width="1274" alt="Screenshot 2024-05-28 at 14 47 15" src="https://github.com/qianq826/TECHIN515_Team14/assets/148395429/4c765105-43b1-4fcb-b5c2-70e898760b23">
-
 ### Circadian Floor lamp
 Group 14:
 Sebastian Qian | Yulin Li | Chaney He |
+
+
+Software
+<img width="1274" alt="Screenshot 2024-05-28 at 14 47 15" src="https://github.com/qianq826/TECHIN515_Team14/assets/148395429/4c765105-43b1-4fcb-b5c2-70e898760b23">
 
 
 # Circadian Weather App Dashboard
@@ -59,8 +60,5 @@ Run the Streamlit application:
 ```sh
 streamlit run app.py
 
-
-# Software
-<img width="1274" alt="Screenshot 2024-05-28 at 14 47 15" src="https://github.com/qianq826/TECHIN515_Team14/assets/148395429/4c765105-43b1-4fcb-b5c2-70e898760b23">
 
 
