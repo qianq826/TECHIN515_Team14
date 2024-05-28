@@ -59,12 +59,9 @@ Run the Streamlit application:
 streamlit run app.py
 
 
+<img width="1274" alt="Screenshot 2024-05-28 at 14 47 15" src="https://github.com/qianq826/TECHIN515_Team14/assets/148395429/4c765105-43b1-4fcb-b5c2-70e898760b23">
 
 
-<img width="1274" alt="Screenshot 2024-05-28 at 14 47 15" src="https://github.com/qianq826/TECHIN515_Team14/assets/148395429/a7158c8d-b518-4461-acbd-76eb1da963fc">
-
-
-<img width="808" alt="Screenshot 2024-05-10 at 12 30 04" src="https://github.com/qianq826/TECHIN515_Team14/assets/148395429/40ee4f27-12a5-458a-9979-0a559c114430">
 
 
 
