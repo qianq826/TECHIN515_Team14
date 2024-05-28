@@ -1,9 +1,26 @@
+import os
 import streamlit as st
 import requests
 from timezonefinder import TimezoneFinder
 from datetime import datetime, timedelta
 import pytz
 from PIL import Image
+from azure.iot.device import IoTHubDeviceClient, Message
+
+# Replace with your IoT Hub connection string
+connection_string = "HostName=iotdevice-esp32.azure-devices.net;DeviceId=iotdevice-esp32;SharedAccessKeyName=iothubowner;SharedAccessKey=R0mDqvmO/fU+pxKGyZDw4KSH7z3kibnHjAIoTGqyAew="
+device_id = "iotdevice-esp32"
+
+client = IoTHubDeviceClient.create_from_connection_string(connection_string)
+
+def send_rgb_to_esp32(r, g, b):
+    message = f'{{"r":{r},"g":{g},"b":{b}}}'
+    try:
+        
+        client.send_c2d_message(device_id, message)
+        st.success("Color set successfully via IoT Hub!")
+    except Exception as e:
+        st.error(f"Failed to send color via IoT Hub: {e}")     
 
 # Setting up UI elements
 def setup_ui():
@@ -15,6 +32,19 @@ def setup_ui():
             background-attachment: fixed;
             background-size: cover;
         }
+        .color-picker-container {
+            margin: 10px 0;
+        }
+        .color-picker {
+            width: 800%;
+            height: 40px;
+            border: none;
+            padding: 0;
+            outline: none;
+            background: none;
+            cursor: pointer;
+        }
+        
         </style>
         """, unsafe_allow_html=True)
     logo = Image.open("img/icon.png")
@@ -203,6 +233,9 @@ def main():
     wake_up_time = st.time_input("Wake up time", value=datetime.strptime("06:00", '%H:%M').time())
     bedtime = st.time_input("Bedtime", value=datetime.strptime("22:00", '%H:%M').time())
 
+    circadian_color_sent = False  # Flag to check if circadian color is sent
+
+
     if st.button('Get Circadian Colour'):
         if location:
             lat, lon = geocode_location(location)
@@ -226,6 +259,11 @@ def main():
                     for color in colors:
                         st.sidebar.markdown(f"**{color[1]}**")
                         st.sidebar.markdown(f"<div style='height: 20px; width: 100%; background-color: {color[1]}; margin-bottom: 5px;'></div>", unsafe_allow_html=True)
+
+                        # Parse RGB color
+                        rgb_color = color[1].replace("rgb(", "").replace(")", "").split(", ")
+                        send_rgb_to_esp32(int(rgb_color[0]), int(rgb_color[1]), int(rgb_color[2]))
+
                 else:
                     circadian_color = get_circadian_color(time_of_day, weather_condition)
                     st.success(f"Weather forecast for {location}: {weather_description}")
@@ -233,10 +271,23 @@ def main():
                     st.markdown(f"#### Circadian Color")
                     st.markdown(f'<div style="height: 20px; width: 100%; background-color: {circadian_color};"></div>', unsafe_allow_html=True)
 
+                    # Parse RGB color
+                    rgb_color = circadian_color.replace("rgb(", "").replace(")", "").split(", ")
+                    send_rgb_to_esp32(int(rgb_color[0]), int(rgb_color[1]), int(rgb_color[2]))
+                    circadian_color_sent = True  # Mark that circadian color is sent
+
             else:
                 st.error("Could not find this location.")
         else:
             st.error("Please enter a location.")
+
+     # Add color picker to directly control LED color
+    if not circadian_color_sent:  # Only show color picker if circadian color is not sent
+        st.sidebar.header("Manual LED Control")
+        color = st.sidebar.color_picker("Pick a color", "#00f900")
+        if st.sidebar.button("Set LED Color"):
+            r, g, b = [int(color[i:i+2], 16) for i in (1, 3, 5)]
+            send_rgb_to_esp32(r, g, b)
 
 if __name__ == "__main__":
     main()
