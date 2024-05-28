@@ -1,0 +1,13 @@
+streamlit
+requests
+timezonefinder
+pytz
+Pillow
+plotly
+pandas
+numpy
+matplotlib
+geosky
+countryinfo
+Flask
+azure-iot-device 
