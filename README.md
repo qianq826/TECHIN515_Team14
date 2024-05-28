@@ -4,14 +4,6 @@
 Sebastian Qian | Yulin Li | Chaney He |
 
 
-### Software Architecture
-
-<img width="1274" alt="Screenshot 2024-05-28 at 14 47 15" src="https://github.com/qianq826/TECHIN515_Team14/assets/148395429/4c765105-43b1-4fcb-b5c2-70e898760b23">
-
-### Hardware Architecture
-
-<img width="769" alt="Screenshot 2024-05-28 at 15 13 10" src="https://github.com/qianq826/TECHIN515_Team14/assets/148395429/e44af510-50df-491a-8c5c-c8bb002f99e5">
-
 # Circadian Weather App Dashboard
 
 This project is a Streamlit-based web application that adjusts LED colors based on circadian rhythms and weather conditions. It integrates with an ESP32 device via Azure IoT Hub to control the LED colors dynamically.
@@ -25,6 +17,13 @@ This project is a Streamlit-based web application that adjusts LED colors based 
 - Provides a gradient of colors for the entire day.
 - Allows manual control of LED colors via a color picker.
 
+### Software Architecture
+
+<img width="1274" alt="Screenshot 2024-05-28 at 14 47 15" src="https://github.com/qianq826/TECHIN515_Team14/assets/148395429/4c765105-43b1-4fcb-b5c2-70e898760b23">
+
+### Hardware Architecture
+
+<img width="769" alt="Screenshot 2024-05-28 at 15 13 10" src="https://github.com/qianq826/TECHIN515_Team14/assets/148395429/e44af510-50df-491a-8c5c-c8bb002f99e5">
 ## Setup and Installation
 
 ### Prerequisites
